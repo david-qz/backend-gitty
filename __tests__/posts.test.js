@@ -4,7 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 // The mocked authorize middleware will make use appear as user bob to all protected routes.
-jest.mock('../lib/middleware/authorize');
+jest.mock('../lib/middleware/authenticate');
 
 describe('gitty posts routes', () => {
   beforeEach(() => {
