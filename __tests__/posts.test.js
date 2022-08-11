@@ -31,7 +31,7 @@ describe('gitty posts routes', () => {
   });
 
   it('POST /api/v1/posts should make a new post', async () => {
-    const res = await request(app).post('/api/v1/posts').send({ content: 'test post' });
+    const res = await request(app).post('/api/v1/posts').send({ post: 'test post' });
     expect(res.status).toEqual(200);
 
     const post = res.body;
