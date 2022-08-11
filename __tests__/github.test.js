@@ -2,22 +2,23 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const { CookieAccessInfo } = require('cookiejar');
 
 jest.mock('../lib/services/GithubService');
 
-describe('gitty oauth routes', () => {
+describe('gitty /api/v1/github OAuth routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
 
-  it('GET /api/v1/github/login should redirect to github oauth page', async () => {
+  it('GET /login should redirect to github oauth page', async () => {
     const res = await request(app).get('/api/v1/github/login');
 
     expect(res.redirect).toEqual(true);
     expect(res.header.location).toMatch(redirectLocationPattern);
   });
 
-  it('should login and redirect users to /api/v1/github/dashboard', async () => {
+  it('GET /callback should login and redirect users to /api/v1/posts', async () => {
     const res = await request
       .agent(app)
       .get('/api/v1/github/callback?code=42')
@@ -25,6 +26,24 @@ describe('gitty oauth routes', () => {
 
     expect(res.redirects.length).toEqual(1);
     expect(res.redirects[0]).toMatch(/http:\/\/127.0.0.1:\d+\/api\/v1\/posts/i);
+  });
+
+  it('DELETE / should log a user out', async () => {
+    // "Log in"
+    const agent = request.agent(app);
+    await agent.get('/api/v1/github/callback?code=42');
+
+    let session = agent.jar.getCookie(process.env.COOKIE_NAME, new CookieAccessInfo());
+    expect(session).toMatchObject({
+      name: process.env.COOKIE_NAME,
+      value: expect.any(String)
+    });
+
+    const res = await agent.delete('/api/v1/github');
+    expect(res.status).toEqual(204);
+
+    session = agent.jar.getCookie(process.env.COOKIE_NAME, new CookieAccessInfo());
+    expect(session).toBeUndefined();
   });
 
   afterAll(() => {
