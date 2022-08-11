@@ -23,7 +23,7 @@ describe('gitty /api/v1/github OAuth routes', () => {
     const res = await agent.get('/api/v1/github/callback?code=42').redirects(1);
 
     expect(res.redirects.length).toEqual(1);
-    expect(res.redirects[0]).toMatch(/http:\/\/127.0.0.1:\d+\/api\/v1\/posts/i);
+    expect(res.redirects[0]).toMatch(/http:\/\/127.0.0.1:\d+\//i);
 
     const session = agent.jar.getCookie(process.env.COOKIE_NAME, CookieAccessInfo.All);
     expect(session).toMatchObject({
