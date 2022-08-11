@@ -25,7 +25,7 @@ describe('gitty /api/v1/github OAuth routes', () => {
     expect(res.redirects.length).toEqual(1);
     expect(res.redirects[0]).toMatch(/http:\/\/127.0.0.1:\d+\/api\/v1\/posts/i);
 
-    const session = agent.jar.getCookie(process.env.COOKIE_NAME, new CookieAccessInfo());
+    const session = agent.jar.getCookie(process.env.COOKIE_NAME, CookieAccessInfo.All);
     expect(session).toMatchObject({
       name: process.env.COOKIE_NAME,
       value: expect.any(String)
@@ -37,13 +37,13 @@ describe('gitty /api/v1/github OAuth routes', () => {
     const agent = request.agent(app);
     await agent.get('/api/v1/github/callback?code=42');
 
-    let session = agent.jar.getCookie(process.env.COOKIE_NAME, new CookieAccessInfo());
+    let session = agent.jar.getCookie(process.env.COOKIE_NAME, CookieAccessInfo.All);
     expect(session).toBeTruthy();
 
     const res = await agent.delete('/api/v1/github');
     expect(res.status).toEqual(204);
 
-    session = agent.jar.getCookie(process.env.COOKIE_NAME, new CookieAccessInfo());
+    session = agent.jar.getCookie(process.env.COOKIE_NAME, CookieAccessInfo.All);
     expect(session).toBeUndefined();
   });
 
