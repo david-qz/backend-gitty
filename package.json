@@ -4,6 +4,9 @@
   "description": "",
   "main": "server.js",
   "type": "commonjs",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "test": "jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config --passWithNoTests",
     "test:watch": "npm run test -- --watch",
