@@ -5,7 +5,7 @@ const app = require('../lib/app');
 
 jest.mock('../lib/services/GithubService');
 
-describe('gitty routes', () => {
+describe('gitty oauth routes', () => {
   beforeEach(() => {
     return setup(pool);
   });

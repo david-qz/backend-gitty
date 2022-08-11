@@ -1,9 +1,11 @@
 /* eslint-disable no-console */
 const fs = require('fs').promises;
 
+const setupFilename = process.env.NODE_ENV === 'test' ? 'setup.test.sql' : 'setup.sql';
+
 module.exports = (pool) => {
   return fs
-    .readFile(`${__dirname}/../sql/setup.sql`, { encoding: 'utf-8' })
+    .readFile(`${__dirname}/../sql/${setupFilename}`, { encoding: 'utf-8' })
     .then((sql) => pool.query(sql))
     .then(() => {
       if (process.env.NODE_ENV !== 'test') {
