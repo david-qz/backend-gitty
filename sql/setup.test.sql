@@ -16,3 +16,14 @@ create table posts (
     content varchar(255) not null,
     foreign key(author_id) references github_users(id) on delete set null
 );
+
+insert into github_users (username, email, avatar)
+values
+('bob', 'bob@example.com', 'bobs-avatar.png'),
+('alice', 'alice@example.com', 'alices-avatar.png');
+
+insert into posts (author_id, content)
+values
+(1, 'hey I''m Bob'),
+(2, 'hi my name is Alice'),
+(null, 'I deleted my account');
