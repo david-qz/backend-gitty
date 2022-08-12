@@ -47,6 +47,20 @@ describe('gitty /api/v1/github OAuth routes', () => {
     expect(session).toBeUndefined();
   });
 
+  it('GET /session should return the session information', async () => {
+    // "Log in"
+    const agent = request.agent(app);
+    await agent.get('/api/v1/github/callback?code=42');
+
+    const res = await agent.get('/api/v1/github/session');
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      username: expect.any(String),
+      iat: expect.any(Number),
+      exp: expect.any(Number)
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
