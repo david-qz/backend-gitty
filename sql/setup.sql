@@ -12,6 +12,7 @@ create table github_users (
 
 create table posts (
     id bigint generated always as identity primary key,
+    created_at timestamp with time zone not null default now(),
     author_id bigint,
     content varchar(255) not null,
     foreign key(author_id) references github_users(id) on delete set null
