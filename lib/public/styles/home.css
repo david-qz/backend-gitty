@@ -1,0 +1,72 @@
+#post-form {
+    width: 100%;
+}
+#post-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+#post-form button {
+    float: right;
+}
+
+#post-list {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 40px;
+}
+#post-list li {
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+        "a c"
+        "a b"
+    ;
+    grid-template-columns: 64px 1fr;
+    grid-template-rows: 40px 1fr;
+}
+#post-list img {
+    object-fit: cover;
+    grid-area: a;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid lightgray;
+}
+#post-list span {
+    grid-area: c;
+    margin-top: 8px;
+    font-weight: bold;
+}
+#post-list p {
+    grid-area: b;
+}
+
+.modal {
+    background-color: rgba(1, 1, 1, 0.4);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal.open {
+    visibility: visible;
+    opacity: 1;
+}
+.modal-container {
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
