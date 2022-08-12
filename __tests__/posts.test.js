@@ -20,6 +20,7 @@ describe('gitty posts routes', () => {
     expect(posts).toBeInstanceOf(Array);
     expect(posts[0]).toEqual({
       id: expect.any(String),
+      createdAt: expect.any(String),
       author: {
         id: expect.any(Number),
         username: expect.any(String),
@@ -38,12 +39,13 @@ describe('gitty posts routes', () => {
 
     expect(post).toEqual({
       id: expect.any(String),
+      createdAt: expect.any(String),
       content: 'test post',
       author: {
         id: 1,
         username: 'bob',
         email: 'bob@example.com',
-        avatar: 'bobs-avatar.png'
+        avatar: 'https://www.placecage.com/140/100'
       }
     });
   });
