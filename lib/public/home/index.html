@@ -5,13 +5,28 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/home.css">
     <title>Gitty</title>
 </head>
 <body>
+    <header>
+        <h1 class="logo">Gitty</h1>
+        <span id="logout-link" class="header-link">Log out</span>
+    </header>
     <main>
-        <h1>Gitty Home</h1>
+        <form id="post-form">
+            <textarea name="content" required maxlength="255" placeholder="What's happening?"></textarea>
+            <button>Send</button>
+        </form>
         <ul id="post-list"></ul>
     </main>
+    <div id="login-modal" class="modal">
+        <div class="modal-container">
+            <h1><a href="/api/v1/github/login">Please log to continue</a></h1>
+        </div>
+    </div>
 
     <script src="./app.js" type="module"></script>
 </body>

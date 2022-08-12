@@ -2,8 +2,8 @@
 -- This file is run after setup.sql only in a test environment
 insert into github_users (username, email, avatar)
 values
-('bob', 'bob@example.com', 'bobs-avatar.png'),
-('alice', 'alice@example.com', 'alices-avatar.png');
+('bob', 'bob@example.com', 'https://www.placecage.com/140/100'),
+('alice', 'alice@example.com', 'https://www.placecage.com/g/140/100');
 
 insert into posts (author_id, content)
 values

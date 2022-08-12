@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Orbitron:wght@600&display=swap');
+/*font-family: 'Open Sans', sans-serif;*/
+/*font-family: 'Orbitron', sans-serif;*/
+
+:root {
+    --header-color: #2580d4;
+    --link-color: #5252ff;
+}
+
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
+header {
+    padding: 15px;
+    background-color: var(--header-color);
+    color: white;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+}
+
+#logout-link {
+    visibility: hidden;
+}
+
+main {
+    max-width: 450px;
+    margin: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+textarea {
+    resize: none;
+}
+
+a {
+    color: var(--link-color);
+}
+a:visited {
+    color: var(--link-color);
+}
+
+.header-link {
+    cursor: pointer;
+}
